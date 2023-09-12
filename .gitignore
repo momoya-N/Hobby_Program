@@ -4,4 +4,7 @@
 *.png
 *.avi
 *.mp4
+*.sty
+*.pdf
+*.synctex.gz
 a.out 

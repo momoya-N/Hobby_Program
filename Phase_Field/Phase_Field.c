@@ -1,4 +1,3 @@
-#define _USE_MATH_DEFINES // for C
 #include <math.h>
 #include <stdio.h>
 
@@ -12,14 +11,28 @@ void Initialize_double(int NX, int NY, double **data, double a) { // data , init
   }
 }
 
+void next_phi(double ***data, double time) {
+  int i, j, k;
+  double time;
+  double X, Y; // x and y length
+
+  for (i = 0; i < t_step; i++) {
+    for (j = 0; j < count; i++) {
+      /* code */
+    }
+  }
+
+  data[t_step + 1]
+}
+
 int main(void) {
 
   /*変数&物理量設定*/
   int i, j, k;
 
-  int NX, NY;    // x and y length
-  double dx, xy; // calculate space [m]
-  int t_step;    // time step
+  double X, Y;   // x and y length
+  double h;      // calculate space [m]
+  double t_step; // time
   double dt;     // time of one step [s]
 
   double DF;    // driving force of solid phase: f_L-f_S [J/m^3]

@@ -1,20 +1,32 @@
-\documentclass{ltjsarticle}
+\documentclass[twocolumn,landscape]{ltjsarticle}
+\setlength{\columnseprule}{0.2pt}
 \usepackage[top=30truemm,bottom=30truemm,left=20truemm,right=20truemm]{geometry}
 \usepackage{physics}
 \begin{document}
 
-\title{はじめての\TeX }
-\author{Taro J. Armstrong}
+\title{フェーズフィールドメモ}
 \maketitle
-\section{はじめての\TeX がLua\TeX なんて粋だね}
-%\section{はじめての\TeXがLua\TeXなんて粋だね}
 
-%こうやって文字を打ちます。
-\subsection{小見出し！}
-あたり前過ぎて気に止めることもないですが、きとんと改行命令を出していなくても自動で改行します。
-\\あ、ギリ改行されなかったか。
-\begin{equation}
-  \frac{\partial C}{\partial t}=D\frac{\partial^2 c}{\partial x^2}
-\end{equation}
+\section{支配方程式(Allen-Cahn 方程式)}
+  \begin{equation}
+    \begin{split}
+      \tau\pdv{\phi}{t}&=\epsilon^2\laplacian\phi-f'(\phi)\\
+      \\
+      f(\phi)&=\frac{a^2}{2}g(\phi)+f_S h(\phi)+f_L(1-h(\phi))\\
+      g(\phi)&=\phi^2(1-\phi)^2\\
+      h(\phi)&=\phi^2(3-2\phi)
+    \end{split}    
+  \end{equation}
+  以上より、
+  \begin{equation}
+    \tau\pdv{\phi}{t}=\epsilon^2\laplacian\phi-+2a^2\phi(1-\phi)\qty{\phi-\frac{1}{2}+\frac{3(f_L-f_S)}{a^2}}
+  \end{equation}
+  離散化すると、
+  \begin{equation}
+    \begin{split}
+      \phi(t+dt,\vb*{x})=&\phi(t,\vb*{x})+\frac{dt \epsilon^2}{\tau h^2}\left\{\phi(t,x+h,y)+\phi(t,x-h,y)+\phi(t,x,y+h)+\right.\\
+      &\left.\phi(t,x,y-h)-4\phi(t,x,y)\right\}+2a^2\phi(1-\phi)\frac{dt}{\tau}\qty{\phi-\frac{1}{2}+\frac{3(f_L-f_S)}{a^2}}      
+    \end{split}
+  \end{equation}
 \end{document}
 

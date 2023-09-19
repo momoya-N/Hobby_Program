@@ -30,9 +30,9 @@ int main(void) {
   /*変数&物理量設定*/
   int i, j, k;
 
-  double X, Y;   // x and y length
-  double h;      // calculate space [m]
-  double t_step; // time
+  double nx, ny; // x and y grid
+  double h;      // computational grid [m]
+  double t_step; // time step
   double dt;     // time of one step [s]
 
   double DF;    // driving force of solid phase: f_L-f_S [J/m^3]
@@ -42,11 +42,20 @@ int main(void) {
   /*配列確保*/
   double ***phi = (double ***)malloc(sizeof(double **) * t_step); // order parameter
   for (i = 0; i < t_step; i++) {
-    phi[i] = (double **)malloc(sizeof(double *) * NX);
-    for (j = 0; j < NX; j++) {
-      phi[i][j] = (double *)malloc(sizeof(double) * NY);
+    phi[i] = (double **)malloc(sizeof(double *) * nx);
+    for (j = 0; j < nx; j++) {
+      phi[i][j] = (double *)malloc(sizeof(double) * ny);
     }
   }
+
+  for (i = 0; i < t_step; i++) {
+    for (j = 0; j < nx; j++) {
+      free(phi[i][j]);
+    }
+    free(phi[i]);
+  }
+
+  free(phi);
 
   printf("Hello, World");
   return 0;

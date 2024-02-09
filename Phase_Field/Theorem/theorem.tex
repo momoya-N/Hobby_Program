@@ -1,0 +1,73 @@
+\documentclass[twocolumn,landscape]{ltjsarticle}
+\setlength{\columnseprule}{0.2pt}
+\author{Tomoya Nakamura}
+% \usepackage[top=30truemm,bottom=30truemm,left=20truemm,right=20truemm]{geometry}
+% \usepackage{physics}
+% \usepackage{color}
+% \usepackage{url}
+\usepackage{mypackage}
+\begin{document}
+
+\title{フェーズフィールドメモ}
+\maketitle
+
+\section{基礎理論}
+\subsection{Phase-field Model of Pure Matelial}
+order parametaer $\phi$が各相の状態を表す。\\
+$\phi=1$:solid,$\phi=0$:liquid,$0<\phi<1$:interface\\
+Helmholtz自由エネルギーFは以下のように表される。
+\begin{equation}
+  F=\int_V\left[\frac{1}{2}\epsilon^2|\nabla\phi|^2+f(\phi,T)\right]\dd{V}
+\end{equation}
+自由エネルギー$F[\phi]$の勾配系(以下の式)を考える。
+\begin{equation}
+  \pdv{\phi}{t}=M\frac{\delta F}{\delta \phi}
+\end{equation}
+ここでMは界面の駆動力を表す。$f(\phi,T)$は以下のように表される。
+\begin{equation}
+  \begin{split}
+    f(\phi,T)&=W g(\phi)+f_S h(\phi)+f_L(1-h(\phi))\\
+    g(\phi)&=\phi^2(1-\phi)^2\\
+    h(\phi)&=\phi^2(3-2\phi)\qq{or}\phi^3(10-15\phi+6\phi^2)
+  \end{split}
+\end{equation}
+$W$は二重井戸型ポテンシャルの高さ($W/16$がMax)、$f_S,f_L$は固体相と液相の自由エネルギーを表す。勾配系は以下のようになる。
+\begin{equation}
+  \begin{split}
+    \pdv{\phi}{t}&=M\qty{\epsilon^2\laplacian\phi+(f_L-f_S)h'(\phi)-Wg'(\phi)}\\
+  \end{split}
+\end{equation}
+また、温度の拡散方程式は以下の式で与えられる。
+\begin{equation}
+  \pdv{T}{t}=D\laplacian T+h'(\phi)\frac{L}{c_P}\pdv{\phi}{t}
+\end{equation}
+$D,L,c_P$はそれぞれ温度の拡散係数、潜熱、比熱を表す。$T=T_m$(融点)の時の平衡状態を考えると、各係数は以下のように表される。
+\begin{equation}
+  W=\frac{3\sigma}{\sqrt{2}T_m\delta}\qc \epsilon^2=\frac{6\sqrt{2}\sigma\delta}{T_m}\qc M=\frac{T_m^2\mu}{6\sqrt{2}L\sigma}
+\end{equation}
+$\sigma,\delta$はそれぞれ界面エネルギー、界面厚さを表す。
+
+\section{実際にやって見ようとした残骸(Allen-Cahn 方程式)(プログラミング)(敗退済み)}
+参考サイト：\url{https://web.tuat.ac.jp/~yamanaka/opensource.html}
+\begin{equation}
+  \begin{split}
+    \tau\pdv{\phi}{t}&=\epsilon^2\laplacian\phi-f'(\phi)\\
+    \\
+    f(\phi)&=W g(\phi)+f_S h(\phi)+f_L(1-h(\phi))\\
+    g(\phi)&=\phi^2(1-\phi)^2\\
+    h(\phi)&=\phi^2(3-2\phi)
+  \end{split}
+\end{equation}
+以上より、
+\begin{equation}
+  \pdv{\phi}{t}=M_\phi\qty[\epsilon^2\laplacian\phi+4W\phi(1-\phi)\qty{\phi-\frac{1}{2}+\frac{3(f_L-f_S)}{2W}}]
+\end{equation}
+ここで、各係数は以下のように表される。
+\begin{equation}
+  W=\frac{6\sigma\delta}{b}\qc\epsilon^2=\frac{3\sigma b}{\delta}\qc M_\phi=\frac{\sqrt{2W}}{6\epsilon}M
+\end{equation}
+となる。$\sigma,\delta$は先に出てきたものと同じ。界面の駆動力$M\rightarrow M_\phi$になっているのは、\color{red}わかりません！！\color{black}
+$b$は$\lambda=\frac{1}{2}\qty{1-\tanh\qty(\frac{b}{2})}$を満たす定数。\color{red}何のためにあるのかはわかりません！！\color{black}\\
+挫折したので諦めます。
+\end{document}
+

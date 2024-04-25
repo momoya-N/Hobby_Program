@@ -1,10 +1,6 @@
 \documentclass[twocolumn,landscape]{ltjsarticle}
 \setlength{\columnseprule}{0.2pt}
 \author{Tomoya Nakamura}
-% \usepackage[top=30truemm,bottom=30truemm,left=20truemm,right=20truemm]{geometry}
-% \usepackage{physics}
-% \usepackage{color}
-% \usepackage{url}
 \usepackage{mypackage}
 \begin{document}
 
@@ -26,15 +22,15 @@ Helmholtz自由エネルギーFは以下のように表される。
 ここでMは界面の駆動力を表す。$f(\phi,T)$は以下のように表される。
 \begin{equation}
   \begin{split}
-    f(\phi,T)&=W g(\phi)+f_S h(\phi)+f_L(1-h(\phi))\\
-    g(\phi)&=\phi^2(1-\phi)^2\\
-    h(\phi)&=\phi^2(3-2\phi)\qq{or}\phi^3(10-15\phi+6\phi^2)
+    f(\phi,T) & =W g(\phi)+f_S h(\phi)+f_L(1-h(\phi))             \\
+    g(\phi)   & =\phi^2(1-\phi)^2                                 \\
+    h(\phi)   & =\phi^2(3-2\phi)\qq{or}\phi^3(10-15\phi+6\phi^2)
   \end{split}
 \end{equation}
 $W$は二重井戸型ポテンシャルの高さ($W/16$がMax)、$f_S,f_L$は固体相と液相の自由エネルギーを表す。勾配系は以下のようになる。
 \begin{equation}
   \begin{split}
-    \pdv{\phi}{t}&=M\qty{\epsilon^2\laplacian\phi+(f_L-f_S)h'(\phi)-Wg'(\phi)}\\
+    \pdv{\phi}{t} & =M\qty{\epsilon^2\laplacian\phi+(f_L-f_S)h'(\phi)-Wg'(\phi)} \\
   \end{split}
 \end{equation}
 また、温度の拡散方程式は以下の式で与えられる。
@@ -51,11 +47,11 @@ $\sigma,\delta$はそれぞれ界面エネルギー、界面厚さを表す。
 参考サイト：\url{https://web.tuat.ac.jp/~yamanaka/opensource.html}
 \begin{equation}
   \begin{split}
-    \tau\pdv{\phi}{t}&=\epsilon^2\laplacian\phi-f'(\phi)\\
+    \tau\pdv{\phi}{t} & =\epsilon^2\laplacian\phi-f'(\phi)    \\
     \\
-    f(\phi)&=W g(\phi)+f_S h(\phi)+f_L(1-h(\phi))\\
-    g(\phi)&=\phi^2(1-\phi)^2\\
-    h(\phi)&=\phi^2(3-2\phi)
+    f(\phi)           & =W g(\phi)+f_S h(\phi)+f_L(1-h(\phi)) \\
+    g(\phi)           & =\phi^2(1-\phi)^2                     \\
+    h(\phi)           & =\phi^2(3-2\phi)
   \end{split}
 \end{equation}
 以上より、
@@ -69,5 +65,15 @@ $\sigma,\delta$はそれぞれ界面エネルギー、界面厚さを表す。
 となる。$\sigma,\delta$は先に出てきたものと同じ。界面の駆動力$M\rightarrow M_\phi$になっているのは、\color{red}わかりません！！\color{black}
 $b$は$\lambda=\frac{1}{2}\qty{1-\tanh\qty(\frac{b}{2})}$を満たす定数。\color{red}何のためにあるのかはわかりません！！\color{black}\\
 挫折したので諦めます。
+
+\section{gitテスト用文章}
+以下テスト用文章
+\begin{equation}
+  \begin{split}
+    \pdv{\phi}{t} & =M\qty{\epsilon^2\laplacian\phi+(f_L-f_S)h'(\phi)-Wg'(\phi)} \\
+    \pdv{T}{t}    & =D\laplacian T+h'(\phi)\frac{L}{c_P}\pdv{\phi}{t}
+  \end{split}
+\end{equation}
+＊Macとの共有テスト
 \end{document}
 
